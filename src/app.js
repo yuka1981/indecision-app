@@ -1,10 +1,10 @@
-var app = {
+const app = {
   title: "Indecision App",
   subtitle: "Put your life in the handle of a computer",
   options: ["One", "Two"],
 };
 
-var template = (
+const template = (
   <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
@@ -12,6 +12,6 @@ var template = (
   </div>
 );
 
-var appRoot = document.getElementById("app");
+const appRoot = document.getElementById("app");
 
 ReactDOM.render(template, appRoot);
