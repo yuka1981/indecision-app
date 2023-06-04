@@ -33,8 +33,9 @@ const renderApp = () => {
       <p>{app.options.length}</p>
 
       <ol>
-        <li>Item one</li>
-        <li>Item two</li>
+        {app.options.map((option, index) => (
+          <li key={index}>{option}</li>
+        ))}
       </ol>
 
       <button onClick={onRemoveAll}>Remove All</button>
