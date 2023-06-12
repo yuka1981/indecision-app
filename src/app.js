@@ -3,10 +3,9 @@ class IndecisionApp extends React.Component {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      title: "Indecision",
-      subtitle: "Put your life in the hands of computer.",
-      options: ["thing one", "thing two", "thing three"],
+      options: [],
     };
   }
   handleDeleteOptions() {
@@ -21,10 +20,26 @@ class IndecisionApp extends React.Component {
     const option = this.state.options[randomNum];
     alert(option);
   }
+  handleAddOption(option) {
+    if (!option) {
+      return "please input valid opton.";
+    } else if (this.state.options.indexOf(option) > -1) {
+      return "This option exists.";
+    }
+
+    this.setState((prevState) => {
+      return {
+        options: prevState.options.concat(option),
+      };
+    });
+  }
   render() {
+    const title = "Indecision";
+    const subtitle = "Put your life in the hands of computer.";
+
     return (
       <div>
-        <Header title={this.state.title} subtitle={this.state.subtitle} />
+        <Header title={title} subtitle={subtitle} />
         <Action
           handlePick={this.handlePick}
           hasOptions={this.state.options.length > 0}
@@ -33,7 +48,7 @@ class IndecisionApp extends React.Component {
           handleDeleteOptions={this.handleDeleteOptions}
           options={this.state.options}
         />
-        <AddOption />
+        <AddOption handleAddOption={this.handleAddOption} />
       </div>
     );
   }
@@ -65,7 +80,6 @@ class Action extends React.Component {
   }
 }
 
-// Options -> Options component here
 class Options extends React.Component {
   render() {
     return (
@@ -79,27 +93,40 @@ class Options extends React.Component {
   }
 }
 
-// Option -> Option component here
 class Option extends React.Component {
   render() {
-    return <div>Option: {this.props.optionText}</div>;
+    return <div>{this.props.optionText}</div>;
   }
 }
 
-// AddOption -> AddOption component here
 class AddOption extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    this.state = {
+      error: undefined,
+    };
+  }
   handleAddOption(e) {
     e.preventDefault();
 
     const option = e.target.elements.option.value.trim();
+    const error = this.props.handleAddOption(option);
 
-    if (option) {
-      alert(option);
+    if (error) {
+      this.setState(() => {
+        return {
+          error,
+        };
+      });
+    } else {
+      e.target.elements.option.value = "";
     }
   }
   render() {
     return (
       <div>
+        {this.state.error && <p>{this.state.error}</p>}
         <form onSubmit={this.handleAddOption}>
           <input type="text" name="option" />
           <button>Add Option</button>

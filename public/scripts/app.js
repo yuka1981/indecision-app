@@ -18,10 +18,9 @@ var IndecisionApp = function (_React$Component) {
 
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     _this.handlePick = _this.handlePick.bind(_this);
+    _this.handleAddOption = _this.handleAddOption.bind(_this);
     _this.state = {
-      title: "Indecision",
-      subtitle: "Put your life in the hands of computer.",
-      options: ["thing one", "thing two", "thing three"]
+      options: []
     };
     return _this;
   }
@@ -43,12 +42,30 @@ var IndecisionApp = function (_React$Component) {
       alert(option);
     }
   }, {
+    key: "handleAddOption",
+    value: function handleAddOption(option) {
+      if (!option) {
+        return "please input valid opton.";
+      } else if (this.state.options.indexOf(option) > -1) {
+        return "This option exists.";
+      }
+
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.concat(option)
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var title = "Indecision";
+      var subtitle = "Put your life in the hands of computer.";
+
       return React.createElement(
         "div",
         null,
-        React.createElement(Header, { title: this.state.title, subtitle: this.state.subtitle }),
+        React.createElement(Header, { title: title, subtitle: subtitle }),
         React.createElement(Action, {
           handlePick: this.handlePick,
           hasOptions: this.state.options.length > 0
@@ -57,7 +74,7 @@ var IndecisionApp = function (_React$Component) {
           handleDeleteOptions: this.handleDeleteOptions,
           options: this.state.options
         }),
-        React.createElement(AddOption, null)
+        React.createElement(AddOption, { handleAddOption: this.handleAddOption })
       );
     }
   }]);
@@ -127,9 +144,6 @@ var Action = function (_React$Component3) {
   return Action;
 }(React.Component);
 
-// Options -> Options component here
-
-
 var Options = function (_React$Component4) {
   _inherits(Options, _React$Component4);
 
@@ -160,9 +174,6 @@ var Options = function (_React$Component4) {
   return Options;
 }(React.Component);
 
-// Option -> Option component here
-
-
 var Option = function (_React$Component5) {
   _inherits(Option, _React$Component5);
 
@@ -178,7 +189,6 @@ var Option = function (_React$Component5) {
       return React.createElement(
         "div",
         null,
-        "Option: ",
         this.props.optionText
       );
     }
@@ -187,16 +197,19 @@ var Option = function (_React$Component5) {
   return Option;
 }(React.Component);
 
-// AddOption -> AddOption component here
-
-
 var AddOption = function (_React$Component6) {
   _inherits(AddOption, _React$Component6);
 
-  function AddOption() {
+  function AddOption(props) {
     _classCallCheck(this, AddOption);
 
-    return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
+    var _this6 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
+
+    _this6.handleAddOption = _this6.handleAddOption.bind(_this6);
+    _this6.state = {
+      error: undefined
+    };
+    return _this6;
   }
 
   _createClass(AddOption, [{
@@ -205,9 +218,16 @@ var AddOption = function (_React$Component6) {
       e.preventDefault();
 
       var option = e.target.elements.option.value.trim();
+      var error = this.props.handleAddOption(option);
 
-      if (option) {
-        alert(option);
+      if (error) {
+        this.setState(function () {
+          return {
+            error: error
+          };
+        });
+      } else {
+        e.target.elements.option.value = "";
       }
     }
   }, {
@@ -216,6 +236,11 @@ var AddOption = function (_React$Component6) {
       return React.createElement(
         "div",
         null,
+        this.state.error && React.createElement(
+          "p",
+          null,
+          this.state.error
+        ),
         React.createElement(
           "form",
           { onSubmit: this.handleAddOption },
