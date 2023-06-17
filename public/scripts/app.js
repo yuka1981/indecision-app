@@ -27,6 +27,35 @@ var IndecisionApp = function (_React$Component) {
   }
 
   _createClass(IndecisionApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      try {
+        var json = localStorage.getItem("options");
+        var options = JSON.parse(json);
+
+        if (options) {
+          this.setState(function () {
+            return { options: options };
+          });
+        }
+      } catch (e) {
+        console.log("can not get options");
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(preProps, preState) {
+      if (preState.options.length !== this.state.options.length) {
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem("options", json);
+      }
+    }
+  }, {
+    key: "componentWillUmount",
+    value: function componentWillUmount() {
+      console.log("componentWillUmount");
+    }
+  }, {
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
       this.setState(function () {
@@ -93,9 +122,9 @@ var IndecisionApp = function (_React$Component) {
   return IndecisionApp;
 }(React.Component);
 
-IndecisionApp.defaultProps = {
-  options: []
-};
+// IndecisionApp.defaultProps = {
+//   options: [],
+// };
 
 var Header = function Header(props) {
   return React.createElement(
@@ -138,6 +167,11 @@ var Options = function Options(props) {
       "button",
       { onClick: props.handleDeleteOptions },
       "Remove All"
+    ),
+    props.options.length === 0 && React.createElement(
+      "p",
+      null,
+      "Please add an option to stared!"
     ),
     props.options.map(function (option) {
       return React.createElement(Option, {
@@ -187,13 +221,19 @@ var AddOption = function (_React$Component2) {
       var option = e.target.elements.option.value.trim();
       var error = this.props.handleAddOption(option);
 
-      if (error) {
-        this.setState(function () {
-          return { error: error };
-        });
-      } else {
+      this.setState(function () {
+        return { error: error };
+      });
+
+      if (!error) {
         e.target.elements.option.value = "";
       }
+
+      // if (error) {
+      //   this.setState(() => ({ error }));
+      // } else {
+      //   e.target.elements.option.value = "";
+      // }
     }
   }, {
     key: "render",
