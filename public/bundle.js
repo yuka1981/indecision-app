@@ -8,10 +8,12 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   canDrink: () => (/* binding */ canDrink),
+/* harmony export */   "default": () => (/* binding */ isSenior),
 /* harmony export */   isAdult: () => (/* binding */ isAdult)
 /* harmony export */ });
 const isAdult = (age) => age >= 18;
 const canDrink = (age) => age >= 18;
+const isSenior = (age) => age >= 65;
 
 
 
@@ -93,6 +95,12 @@ console.log("age = 18", (0,_person_js__WEBPACK_IMPORTED_MODULE_0__.isAdult)(18))
 console.log("age = 16", (0,_person_js__WEBPACK_IMPORTED_MODULE_0__.isAdult)(16));
 console.log("age = 21", (0,_person_js__WEBPACK_IMPORTED_MODULE_0__.isAdult)(21));
 console.log("age = 18", (0,_person_js__WEBPACK_IMPORTED_MODULE_0__.canDrink)(18));
+console.log("age = 64", (0,_person_js__WEBPACK_IMPORTED_MODULE_0__["default"])(64));
+
+// import substract, { square, add } from "./utils.js";
+// console.log(square(4));
+// console.log(add(100, 23));
+// console.log(substract(100, 18));
 
 })();
 
