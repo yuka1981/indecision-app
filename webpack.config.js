@@ -1,6 +1,7 @@
 // entry -> output
 
 const path = require("path");
+const webpack = require("webpack");
 
 // console.log(path.join(__dirname, "public"));
 
@@ -13,4 +14,9 @@ module.exports = {
     path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
+  ],
 };
