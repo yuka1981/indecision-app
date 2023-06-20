@@ -24,6 +24,7 @@ module.exports = {
       },
     ],
   },
+  devtool: "cheap-module-source-map",
   plugins: [
     new webpack.ProvidePlugin({
       process: "process/browser",
