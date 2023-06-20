@@ -23,6 +23,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const template = React.createElement("p", {}, "test 123");
+// const template = React.createElement("p", {}, "test 123");
+const template = <p>This is JSX</p>;
 
 ReactDOM.render(template, document.getElementById("app"));

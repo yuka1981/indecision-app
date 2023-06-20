@@ -14,9 +14,20 @@ module.exports = {
     path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
   },
+  module: {
+    rules: [
+      {
+        loader: "babel-loader",
+        test: /\.js$/,
+        exclude: /node_modules/,
+      },
+    ],
+  },
   plugins: [
     new webpack.ProvidePlugin({
       process: "process/browser",
     }),
   ],
 };
+
+// loador
