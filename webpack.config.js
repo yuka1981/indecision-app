@@ -15,6 +15,7 @@ module.exports = {
     filename: "bundle.js",
   },
   module: {
+    // loader
     rules: [
       {
         loader: "babel-loader",
@@ -29,5 +30,3 @@ module.exports = {
     }),
   ],
 };
-
-// loador
