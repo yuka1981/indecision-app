@@ -7,7 +7,7 @@ const webpack = require("webpack");
 
 module.exports = {
   mode: "none",
-  watch: true,
+  // watch: true,
   entry: "./src/app.js",
   output: {
     // absolute path here
@@ -25,6 +25,13 @@ module.exports = {
     ],
   },
   devtool: "cheap-module-source-map",
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, "public"),
+    },
+    compress: true,
+    port: 8080,
+  },
   plugins: [
     new webpack.ProvidePlugin({
       process: "process/browser",
