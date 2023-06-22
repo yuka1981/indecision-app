@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/reid/.nvm/versions/node/v16.16.0/bin/node /Users/reid/.nvm/versions/node/v16.16.0/bin/yarn run test
+  /Users/reid/.nvm/versions/node/v16.16.0/bin/node /Users/reid/.nvm/versions/node/v16.16.0/bin/yarn add modal-react
 
 PATH: 
   /Users/reid/.nvm/versions/node/v16.16.0/bin:/opt/homebrew/opt/postgresql@12/bin:/Users/reid/.rbenv/shims:/opt/homebrew/opt/openssl@1.1/bin:/opt/homebrew/opt/mysql@5.7/bin:/Users/reid/.rbenv/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/reid/.nvm/versions/node/v16.16.0/bin:/opt/homebrew/opt/postgresql@12/bin:/Users/reid/.rbenv/shims:/opt/homebrew/opt/openssl@1.1/bin:/opt/homebrew/opt/mysql@5.7/bin:/Users/reid/.rbenv/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin
@@ -14,19 +14,24 @@ Platform:
   darwin arm64
 
 Trace: 
-  SyntaxError: /Users/reid/Documents/code/udemy_course/react-course-project/indecision-app/package.json: Unexpected string in JSON at position 124
-      at JSON.parse (<anonymous>)
-      at /Users/reid/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:1629:59
-      at Generator.next (<anonymous>)
-      at step (/Users/reid/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:310:30)
-      at /Users/reid/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:321:13
+  Error: https://registry.yarnpkg.com/modal-react: Not found
+      at Request.params.callback [as _callback] (/Users/reid/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at Request.self.callback (/Users/reid/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:527:28)
+      at Request.<anonymous> (/Users/reid/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:527:28)
+      at IncomingMessage.<anonymous> (/Users/reid/.nvm/versions/node/v16.16.0/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:641:28)
+      at IncomingMessage.emit (node:events:539:35)
+      at endReadableNT (node:internal/streams/readable:1345:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
   {
     "scripts": {
       "serve": "live-server public/",
       "build": "webpack-cli",
-      "dev-server": "webpack-dev-server"
+      "dev-server": "webpack-dev-server",
       "test": "jest"
     },
     "dependencies": {
