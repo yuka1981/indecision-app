@@ -1,9 +1,9 @@
 import React from "react";
 import Modal from "react-modal";
-import AddOption from "./AddOption";
 import Header from "./Header";
 import Action from "./Action";
 import Options from "./Options";
+import AddOption from "./AddOption";
 import OptionModal from "./OptionModal";
 
 export default class IndecisionApp extends React.Component {
