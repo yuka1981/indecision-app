@@ -22,6 +22,12 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
       },
+      {
+        // s? means s charactor is optional
+        // can import css or scss extension file
+        test: /\.s?css$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
     ],
   },
   devtool: "cheap-module-source-map",
